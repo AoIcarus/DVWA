@@ -23,6 +23,9 @@ if( isset( $_GET[ 'Login' ] ) ) {
 	}
 	
 	if( $result && mysqli_num_rows( $result ) == 1 ) {
+		if ($session['attempts'] >= 5) {
+			die("Too many login attempts. Try again later.");
+		}
 		// Get users details
 		$row    = mysqli_fetch_assoc( $result );
 		$avatar = $row["avatar"];

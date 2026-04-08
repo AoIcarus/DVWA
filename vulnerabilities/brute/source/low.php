@@ -26,14 +26,16 @@ if( isset( $_GET[ 'Login' ] ) ) {
 		if ($session['attempts'] >= 5) {
 			die("Too many login attempts. Try again later.");
 		}
-		// Get users details
-		$row    = mysqli_fetch_assoc( $result );
-		$avatar = $row["avatar"];
+		else {
+			// Get users details
+			$row    = mysqli_fetch_assoc( $result );
+			$avatar = $row["avatar"];
 
-		// Login successful
-		$session['attempts'] = 0;
-		$html .= "<p>Welcome to the password protected area {$user}</p>";
-		$html .= "<img src=\"{$avatar}\" />";
+			// Login successful
+			$session['attempts'] = 0;
+			$html .= "<p>Welcome to the password protected area {$user}</p>";
+			$html .= "<img src=\"{$avatar}\" />";
+		}
 	}
 	else {
 		// Login failed
